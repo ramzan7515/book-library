@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Book Library</title>
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <h1>📚 My Book Library</h1>
+            <p>Manage your books, categories and borrowing history</p>
+        </div>
+    </header>
+
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- Statistics -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <h2 id="totalBooks">0</h2>
+                <p>Total Books</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 id="availableBooks">0</h2>
+                <p>Available</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 id="borrowedBooks">0</h2>
+                <p>Borrowed</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 id="totalCategories">0</h2>
+                <p>Categories</p>
+            </div>
+
+        </section>
+
+
+        <!-- Search and Filters -->
+        <section class="toolbar">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search books, authors, ISBN..."
+            >
+
+            <select id="categoryFilter">
+                <option value="">All Categories</option>
+            </select>
+
+            <select id="statusFilter">
+                <option value="">All Status</option>
+                <option value="Available">Available</option>
+                <option value="Borrowed">Borrowed</option>
+            </select>
+
+            <button class="add-btn" onclick="openAddBookModal()">
+                + Add Book
+            </button>
+
+        </section>
+
+
+        <!-- Books -->
+        <section>
+
+            <h2 class="section-title">My Books</h2>
+
+            <div id="bookContainer" class="book-grid"></div>
+
+        </section>
+
+
+        <!-- Borrowing History -->
+        <section class="history-section">
+
+            <h2 class="section-title">
+                Borrowing History
+            </h2>
+
+            <div id="historyContainer"></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Add/Edit Book Modal -->
+
+    <div id="bookModal" class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 id="modalTitle">
+                    Add New Book
+                </h2>
+
+                <button
+                    class="close-btn"
+                    onclick="closeBookModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="bookForm">
+
+                <input
+                    type="hidden"
+                    id="bookId"
+                >
+
+
+                <label>
+                    Book Title
+                </label>
+
+                <input
+                    type="text"
+                    id="bookTitle"
+                    placeholder="Enter book title"
+                    required
+                >
+
+
+                <label>
+                    Author
+                </label>
+
+                <input
+                    type="text"
+                    id="bookAuthor"
+                    placeholder="Enter author name"
+                    required
+                >
+
+
+                <div class="form-row">
+
+                    <div>
+
+                        <label>
+                            Category
+                        </label>
+
+                        <input
+                            type="text"
+                            id="bookCategory"
+                            placeholder="e.g. AI"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            ISBN
+                        </label>
+
+                        <input
+                            type="text"
+                            id="bookISBN"
+                            placeholder="ISBN"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="bookDescription"
+                    placeholder="Book description..."
+                ></textarea>
+
+
+                <div class="modal-buttons">
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="closeBookModal()"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                    >
+                        Save Book
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- Borrow Modal -->
+
+    <div id="borrowModal" class="modal">
+
+        <div class="modal-content small-modal">
+
+            <div class="modal-header">
+
+                <h2>
+                    Borrow Book
+                </h2>
+
+                <button
+                    class="close-btn"
+                    onclick="closeBorrowModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <label>
+                Borrowed By
+            </label>
+
+            <input
+                type="text"
+                id="borrowPerson"
+                placeholder="Person's name"
+            >
+
+
+            <div class="modal-buttons">
+
+                <button
+                    class="cancel-btn"
+                    onclick="closeBorrowModal()"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="save-btn"
+                    onclick="confirmBorrow()"
+                >
+                    Borrow Book
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
